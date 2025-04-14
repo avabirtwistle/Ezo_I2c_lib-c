@@ -38,13 +38,13 @@ void Ezo_board::set_address(uint8_t address){
 }
 
 void Ezo_board::send_cmd(const char* command) {
-  Wire.beginTransmission(this->i2c_address);
+  wire->beginTransmission(this->i2c_address);
   #ifdef ESP32
-  Wire.write((const uint8_t*)command, strlen(command)); 
+  wire->write((const uint8_t*)command, strlen(command));
   #else
-  Wire.write(command); 
+  wire->write(command);
   #endif
-  Wire.endTransmission();
+  wire->endTransmission();
   this->issued_read = false;
 }
 
